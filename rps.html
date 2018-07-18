@@ -11,6 +11,9 @@
 
 
   <script>
+  const playerScore = 0;
+  const compScore = 0;
+  const draw = 0;
   function computerPlay() {
     return ["ROCK", "PAPER", "SCISSORS"][Math.floor(Math.random() * 3)];
   }
@@ -37,6 +40,10 @@
       return tie;
     }
   };
+  function game() {
+
+
+  }
   const playerSelection = 'ROCK';
   const computerSelection = computerPlay();
   console.log(playRound(playerSelection, computerSelection));
