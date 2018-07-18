@@ -12,16 +12,27 @@
 
   <script>
   function computerPlay() {
-    return Math.floor(Math.random() * 3) +1;
+    return ["ROCK", "PAPER", "SCISSORS"][Math.floor(Math.random() * 3)];
   }
-  const rock = 1;
-  const paper = 2;
-  const scissors = 3;
-const playerSelection = rock;
-const computerSelection = computerPlay();
-if (playerSelection == computerSelection) {
-  console.log('Tie!')
-}
+  function playRound(playerSelection, computerSelection) {
+    var playerChoice = playerSelection;
+    switch (playerChoice) {
+      case "ROCK":
+
+        break;
+      default:
+
+    } (playerChoice === "ROCK" && computerSelection == 'PAPER') {
+      return "You Lose! Paper covers Rock!";
+    } else if (playerChoice == "ROCK" && computerSelection == 'SCISSORS') {
+      return "You Win! Rock crushes Scissors!";
+    } else if (playerChoice == "ROCK" && computerSelection == 'ROCK') {
+      return "Tie!";
+    }
+  };
+  const playerSelection = 'ROCK';
+  const computerSelection = computerPlay();
+  console.log(playRound(playerSelection, computerSelection));
   </script>
 </body>
 </html>
