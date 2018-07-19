@@ -11,40 +11,44 @@
 
 
   <script>
-  const playerScore = 0;
-  const compScore = 0;
-  const draw = 0;
+  let playerScore = 0;
+  let compScore = 0;
+  let draw = 0;
+  let round = 1;
+
+  // Computer choice.
   function computerPlay() {
-    return ["ROCK", "PAPER", "SCISSORS"][Math.floor(Math.random() * 3)];
+    return ["rock", "paper", "scissors"][Math.floor(Math.random() * 3)];
   }
+
+  //One round
   function playRound(playerSelection, computerSelection) {
     var playerChoice = playerSelection;
     var tie = "Tie! Try Again!";
-    if (playerChoice === "ROCK" && computerSelection == "PAPER") {
+
+    if (playerChoice === computerSelection) {
+      return window.alert(tie);
+    } else if (playerChoice === "rock" && computerSelection == "paper") {
       return "You Lose! Paper covers Rock!";
-    } else if (playerChoice == "ROCK" && computerSelection == "SCISSORS") {
+    } else if (playerChoice == "rock" && computerSelection == "scissors") {
       return "You Win! Rock crushes Scissors!";
-    } else if (playerChoice == "ROCK" && computerSelection == "ROCK") {
-      return tie;
-    } else if (playerChoice == "PAPER" && computerSelection == "ROCK") {
+    } else if (playerChoice == "paper" && computerSelection == "rock") {
       return "Paper wraps Rock! You win!";
-    } else if (playerChoice == "PAPER" && computerSelection == "SCISSORS") {
+    } else if (playerChoice == "paper" && computerSelection == "scissors") {
       return "Scissors cuts Paper! You lost!";
-    } else if (playerChoice == "PAPER" && computerSelection == "PAPER") {
-      return tie;
-    } else if (playerChoice == "SCISSORS" && computerSelection == "ROCK") {
+    } else if (playerChoice == "scissors" && computerSelection == "rock") {
       return "You Lose! Rock crushes Scissors!";
-    } else if (playerChoice == "SCISSORS" && computerSelection == "PAPER") {
+    } else if (playerChoice == "scissors" && computerSelection == "paper") {
       return "You Win! Scissors cuts Paper!";
-    } else if (playerChoice == "SCISSORS" && computerSelection == "SCISSORS") {
-      return tie;
     }
   };
   function game() {
+    let computerSelection = computerPlay();
+
 
 
   }
-  const playerSelection = 'ROCK';
+  const playerSelection = "roCk"
   const computerSelection = computerPlay();
   console.log(playRound(playerSelection, computerSelection));
   </script>
