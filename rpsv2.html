@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Rock Paper Scissors</title>
+  <style>
+
+  </style>
+</head>
+<body>
+
+
+  <script>
+    let playerScore = 0;
+    let compScore = 0;
+
+    // Computer choice.
+    function cpuPlay() {
+      return ["rock", "paper", "scissors"][Math.floor(Math.random() * 3)];
+    }
+
+    function playRound(playerSelection, computerSelection) {
+      if (playerSelection === computerSelection) {
+        return document.getElementById('roundresults').innerHTML = "Tie! Try again!";
+      }
+      if (playerSelection === "rock" && computerSelection == "paper") {
+        compScore++;
+        return document.getElementById('roundresults').innerHTML = "You Lose! Paper covers Rock!";
+      }
+      if (playerSelection === "rock" && computerSelection == "scissors") {
+        playerScore++;
+        return document.getElementById('roundresults').innerHTML = "You Win! Rock crushes Scissors!";
+      }
+      if (playerSelection === "paper" && computerSelection == "rock") {
+        playerScore++;
+        return document.getElementById('roundresults').innerHTML = "Paper wraps Rock! You win!";
+      }
+      if (playerSelection === "paper" && computerSelection == "scissors") {
+        compScore++;
+        return document.getElementById('roundresults').innerHTML = "Scissors cuts Paper! You lost!";
+      }
+      if (playerSelection === "scissors" && computerSelection == "rock") {
+        compScore++;
+        return document.getElementById('roundresults').innerHTML = "You Lose! Rock crushes Scissors!";
+      }
+      if (playerSelection === "scissors" && computerSelection == "paper") {
+        playerScore++;
+        return document.getElementById('roundresults').innerHTML = "You Win! Scissors cuts Paper!";
+      }
+
+    //   while(playerScore <= maxScore) {
+    //
+    //     round++;
+    //   }
+    // }
+    // if (playerScore > compScore) {
+    //   alert(`Player Score: ${playerScore} Computer Score: ${compScore} You win the game!`);
+    // } else if (playerScore < compScore) {
+    //   alert(`Computer Score: ${compScore} Player Score: ${playerScore}
+    //     You lose the game, good try though`);
+    // } else {
+    //   alert('It is a draw! Wow!')
+    // }
+  }
+  function winCondition () {
+    if (playerScore === 5) {
+      let compScore = 0;
+      let playerScore = 0;
+      return alert("You Win!");
+    }
+    if (compScore === 5) {
+      let compScore = 0;
+      let playerScore = 0;
+      return alert("You Lost! :(");
+    }
+  }
+    function btnFunc (choice){
+      winCondition();
+      playerSelection = choice;
+      const computerSelection = cpuPlay();
+      playRound(choice, computerSelection);
+    }
+  let playerSelection = ""
+  let body = document.querySelector('body');
+  let paperBtn = document.createElement("button");
+  paperBtn.textContent = "PAPER"
+  paperBtn.addEventListener('click', function() {
+    btnFunc("paper");
+  });
+  body.appendChild(paperBtn);
+  let rockBtn = document.createElement("button");
+  rockBtn.textContent = "ROCK";
+  rockBtn.addEventListener('click', function() {
+    btnFunc("rock");
+  });
+  body.appendChild(rockBtn);
+  let scissorsBtn = document.createElement("button");
+  scissorsBtn.textContent = 'SCISSORS';
+  scissorsBtn.addEventListener('click', function() {
+    btnFunc("scissors");
+  });
+  body.appendChild(scissorsBtn);
+  let roundResultDiv = document.createElement("div");
+  roundResultDiv.setAttribute("id", "roundresults");
+  roundResultDiv.textContent = "Results";
+  body.appendChild(roundResultDiv);
+
+    // console.log(playRound(playerSelection, computerSelection));
+  // game();
+  </script>
+</body>
+</html>
