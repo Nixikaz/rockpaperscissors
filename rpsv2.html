@@ -4,7 +4,11 @@
   <meta charset="utf-8">
   <title>Rock Paper Scissors</title>
   <style>
-
+    .playbuttons {
+      color: white;
+      display: block;
+    }
+    
   </style>
 </head>
 <body>
@@ -47,66 +51,87 @@
         playerScore++;
         return document.getElementById('roundresults').innerHTML = "You Win! Scissors cuts Paper!";
       }
-
-    //   while(playerScore <= maxScore) {
-    //
-    //     round++;
-    //   }
-    // }
-    // if (playerScore > compScore) {
-    //   alert(`Player Score: ${playerScore} Computer Score: ${compScore} You win the game!`);
-    // } else if (playerScore < compScore) {
-    //   alert(`Computer Score: ${compScore} Player Score: ${playerScore}
-    //     You lose the game, good try though`);
-    // } else {
-    //   alert('It is a draw! Wow!')
-    // }
   }
   function winCondition () {
-    if (playerScore === 5) {
-      let compScore = 0;
-      let playerScore = 0;
-      return alert("You Win!");
+    let runningScore = document.getElementById("scorekeeper");
+      if (playerScore === 5) {
+        runningScore.innerHTML = `You WIN! Your Score: ${playerScore} Computer Score: ${compScore}`;
+        document.getElementById("rockbutton").style.display = "none";
+        document.getElementById("paperbutton").style.display = "none";
+        document.getElementById("scissorsbutton").style.display = "none";
+        body.appendChild(resetBtn);
+      } else if (compScore === 5) {
+        runningScore.innerHTML = `You lost the game! :( Your Score: ${playerScore} Computer Score: ${compScore}`;
+        document.getElementById("rockbutton").style.display = "none";
+        document.getElementById("paperbutton").style.display = "none";
+        document.getElementById("scissorsbutton").style.display = "none";
+        body.appendChild(resetBtn);
+      } else {
+        runningScore.innerHTML = `Your Score: ${playerScore} Computer Score: ${compScore}`;
+      }
     }
-    if (compScore === 5) {
-      let compScore = 0;
-      let playerScore = 0;
-      return alert("You Lost! :(");
-    }
-  }
     function btnFunc (choice){
-      winCondition();
       playerSelection = choice;
       const computerSelection = cpuPlay();
       playRound(choice, computerSelection);
+      winCondition();
     }
+  function resetButton () {
+    playerScore = 0;
+    compScore = 0;
+    document.getElementById('roundresults').innerHTML = "Results";
+    document.getElementById("rockbutton").removeAttribute("style");
+    document.getElementById("paperbutton").removeAttribute("style");
+    document.getElementById("scissorsbutton").removeAttribute("style");
+    body.removeChild(resetBtn);
+    document.getElementById("scorekeeper").innerHTML = `Your Score: ${playerScore} Computer Score: ${compScore}`;
+  }
   let playerSelection = ""
+
   let body = document.querySelector('body');
-  let paperBtn = document.createElement("button");
+
+  const paperBtn = document.createElement("button");
   paperBtn.textContent = "PAPER"
+  paperBtn.setAttribute("id", "paperbutton");
   paperBtn.addEventListener('click', function() {
     btnFunc("paper");
   });
   body.appendChild(paperBtn);
-  let rockBtn = document.createElement("button");
+
+  const rockBtn = document.createElement("button");
   rockBtn.textContent = "ROCK";
+  rockBtn.setAttribute("id", "rockbutton");
   rockBtn.addEventListener('click', function() {
     btnFunc("rock");
   });
   body.appendChild(rockBtn);
-  let scissorsBtn = document.createElement("button");
+
+  const scissorsBtn = document.createElement("button");
   scissorsBtn.textContent = 'SCISSORS';
+  scissorsBtn.setAttribute("id", "scissorsbutton");
   scissorsBtn.addEventListener('click', function() {
     btnFunc("scissors");
   });
   body.appendChild(scissorsBtn);
+
+  const resetBtn = document.createElement("button");
+  resetBtn.textContent = 'Play Again';
+  resetBtn.setAttribute("id", "resetbutton");
+  resetBtn.addEventListener('click', function() {
+    resetButton();
+  });
+
   let roundResultDiv = document.createElement("div");
   roundResultDiv.setAttribute("id", "roundresults");
   roundResultDiv.textContent = "Results";
   body.appendChild(roundResultDiv);
 
-    // console.log(playRound(playerSelection, computerSelection));
-  // game();
+  let scoreKeeperDiv = document.createElement("div");
+  scoreKeeperDiv.setAttribute("id", "scorekeeper");
+  scoreKeeperDiv.textContent = `Your Score: 0 Computer Score: 0`;
+  body.appendChild(scoreKeeperDiv); 
+  
+
   </script>
 </body>
 </html>
