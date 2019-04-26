@@ -1,3 +1,3 @@
 Rock Paper Scissors 
 
-App created per the odin project.
+App created in vanilla JavaScript.
